@@ -3,7 +3,7 @@
 This is a Python wrapper of
 the [Copernicus Open Data Protocol API](https://documentation.dataspace.copernicus.eu/APIs/OData.html).
 
-It is designed to make it easy to send queries.
+It is designed to make it easier to send requests.
 
 > [!IMPORTANT]
 > This wrapper is not intended to download data. It has no such functions.
