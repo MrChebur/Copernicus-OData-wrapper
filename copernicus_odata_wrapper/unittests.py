@@ -22,7 +22,7 @@ if my_country_is_banned:
                        }
 
 
-class Testerrors(unittest.TestCase):
+class TestErrors(unittest.TestCase):
     maxDiff = None
 
     def test_errors(self):
