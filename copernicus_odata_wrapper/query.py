@@ -1,10 +1,10 @@
 import inspect
-import json
 import requests
 
-from filter import Filter
-from errors import check_response_for_errors
 
+from .filter import Filter
+from .errors import check_response_for_errors
+from .config import config
 
 # noinspection PyMethodMayBeStatic
 class Query:
@@ -20,11 +20,8 @@ class Query:
     """
 
     def __init__(self):
-
-        with open('config.json') as config:
-            dictionary = json.load(config)
-            self.endpoint = dictionary['endpoint']
-            self.endpoint_zipper = dictionary['endpoint_zipper']
+        self.endpoint = config['endpoint']
+        self.endpoint_zipper = config['endpoint_zipper']
 
         # general search options
         self.__options = {'filter': None,
@@ -315,7 +312,6 @@ class Query:
             dictionary = response.json()
             return dictionary
 
-
     def product_download(self):
         """
         Reference to method:
@@ -334,39 +330,3 @@ class QueryDeleted:
 
     def __init__(self):
         raise NotImplementedError
-
-
-if __name__ == '__main__':
-    from datetime import datetime
-    from pprint import pprint
-    import attributes as Atr
-
-    # attributes = [Atr.BeginningDateTime() >= datetime(2019, 8, 1)]
-    # print(attributes)
-
-    # setting up a filter
-    f = Filter()
-    f.Not()
-    f.contains('S2A')
-    f.And()
-    f.Not()
-    f.contains('S3A')
-    f.And()
-    f.by_sensing_date(datetime(2019, 1, 1), datetime(2019, 1, 2), full_day=True)
-
-    # query instance
-    query = Query()
-    query.set_filter(f)
-
-    pprint(query.__options)
-    response = query.send()
-    pprint(response)
-
-    # print('-' * 20)
-    #
-    # fltr.clear()
-
-    # query.set_filter(f)
-    # pprint(query.options)
-    # respons = query.send()
-    # pprint(respons)

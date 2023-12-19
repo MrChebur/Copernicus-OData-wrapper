@@ -1,15 +1,13 @@
 from datetime import datetime
-import json
-import attributes as Atr
+from .attributes import Attribute as Atr
+from .config import config
 
 
 # noinspection PyMethodMayBeStatic
 class Filter:
 
     def __init__(self, session=None, timeout=None):
-        with open('config.json') as config:
-            self.endpoint = json.load(config)['endpoint']
-
+        self.endpoint = config['endpoint']
         self.body = None
         self.post_request_body = None
         self.session = session

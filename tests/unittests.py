@@ -2,12 +2,12 @@ import unittest
 import requests
 from datetime import datetime
 
-import errors
-import attributes as Atr
+import copernicus_odata_wrapper.errors as errors
+import copernicus_odata_wrapper.attributes as Atr
 
-from query import Query
-from filter import Filter
-from errors import check_response_for_errors
+from copernicus_odata_wrapper.query import Query
+from copernicus_odata_wrapper.filter import Filter
+from copernicus_odata_wrapper.errors import check_response_for_errors
 
 my_country_is_banned = False
 proxy_ip_port = '103.66.10.101:8080'
@@ -34,7 +34,7 @@ class TestErrors(unittest.TestCase):
             check_response_for_errors(the_response)
 
         with self.assertRaises(errors.Unauthorized):
-            the_response._content =  b'{"detail": "Unauthorized"}'
+            the_response._content = b'{"detail": "Unauthorized"}'
             check_response_for_errors(the_response)
 
         with self.assertRaises(errors.InvalidODataPath):

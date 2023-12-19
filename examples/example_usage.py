@@ -1,9 +1,9 @@
 from datetime import datetime
 from pprint import pprint
 
-from query import Query
-from filter import Filter
-from attributes import ProcessingLevel
+from copernicus_odata_wrapper.query import Query
+from copernicus_odata_wrapper.filter import Filter
+from copernicus_odata_wrapper.attributes import ProcessingLevel
 
 if __name__ == '__main__':
     start_date = datetime(2023, 7, 2)
