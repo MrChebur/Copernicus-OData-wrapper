@@ -46,7 +46,7 @@ class Query:
         for option, value in self.__options.items():
             if value is not None:
 
-                if option == 'filter':
+                if option == 'filter' and isinstance(value, Filter):
                     if value.body is None:
                         continue
                     formatted_option = f'${option}={value.body}'
