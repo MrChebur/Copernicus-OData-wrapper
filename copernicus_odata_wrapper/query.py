@@ -200,7 +200,7 @@ class Query:
         ASSETS = 'Assets'
         BOTH = 'Assets&$expand=Attributes'  # '&$expand=Assets&$expand=Attributes' Yeah, it's awkward.
 
-        if all(value is not None for value in [attributes, assets]):
+        if any(value is not None for value in [attributes, assets]):
 
             if attributes and assets:  # must be the first `if`
                 self.__options['expand'] = BOTH
@@ -235,7 +235,8 @@ class Query:
     def by_names(self, names: [str]) -> dict:
         # This method is different from the methods specified in `filter.py`, so it is derived from the `Filter` class.
         """
-        Immidiatly sends a POST request to search for multiple product names.
+        Immediately sends a POST request to search for multiple product names.
+        The name MUST ends with '.SAFE' or the scene will not be found.
         :param names: The list of product names to be searched by.
         :return:
         """
