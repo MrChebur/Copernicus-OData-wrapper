@@ -199,7 +199,7 @@ class Filter:
 
     def by_attribute(self, queries: [str] or [Atr.Attribute], join_all_with: str = ' and ') -> None:
         """
-        Uses strings or `Attributes` classes to perform search for products by attributes. By default, all queries are
+        Uses strings or `attributes.py` classes to perform search for products by attributes. By default, all queries are
         joinded with `and`. If you use strings instead of [Atr.Attribute] the query setup will be completely manual
         (exept for joining with `and`).
 
