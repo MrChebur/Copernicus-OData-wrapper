@@ -24,6 +24,9 @@ def check_response_for_errors(response: requests.Response) -> None:
             elif dictionary == {'detail': 'Not Found'}:
                 raise NotFound
 
+            elif dictionary == {"detail": "Expired signature!"}:
+                raise ExpiredSignature
+
             else:
                 raise Unknown(f"An unknown error occurred, while sending:\n"
                               f"{response.url}"
@@ -40,6 +43,10 @@ class InvalidODataPath(Exception):
 
 
 class NotFound(Exception):
+    pass
+
+
+class ExpiredSignature(Exception):
     pass
 
 
