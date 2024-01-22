@@ -27,6 +27,9 @@ def check_response_for_errors(response: requests.Response) -> None:
             elif dictionary == {"detail": "Expired signature!"}:
                 raise ExpiredSignature
 
+            elif dictionary == {"detail": "Product not found in catalogue"}:
+                raise ProductNotFoundInCatalogue
+
             else:
                 raise Unknown(f"An unknown error occurred, while sending:\n"
                               f"{response.url}"
@@ -47,6 +50,10 @@ class NotFound(Exception):
 
 
 class ExpiredSignature(Exception):
+    pass
+
+
+class ProductNotFoundInCatalogue(Exception):
     pass
 
 
